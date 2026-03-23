@@ -13,11 +13,11 @@ Both components are keyboard-friendly, screen-reader accessible, and use real AR
 
 ## What's Inside
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Semantic markup for both components |
-| `styles.css` | Layout, visual states, and CSS transitions |
-| `script.js` | DOM selection, event listeners, and state management |
+| File         | Purpose                                              |
+| ------------ | ---------------------------------------------------- |
+| `index.html` | Semantic markup for both components                  |
+| `styles.css` | Layout, visual states, and CSS transitions           |
+| `script.js`  | DOM selection, event listeners, and state management |
 
 ## Key Concepts
 
