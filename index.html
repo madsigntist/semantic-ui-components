@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Semantic UI Components</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <main class="ui-demo">
+        <header class="ui-demo__header">
+            <h1 class="ui-demo__title">Sematic UI Components</h1>
+            <p class="ui-demo__intro">
+                This page demonstrates accessible tabs and an accordion built with semantic HTML, CSS, and JavaScript.
+            </p>
+        </header>
+
+        <section class="tabs" aria-labelledby="tabs-heading">
+            <h2 class="tabs__heading" id="tabs-heading">Tabs Component</h2>
+
+            <div class="tabs__list" role="tablist" aria-label="Project topics">
+                <button class="tabs__button tabs__button--active" id="tab-html" type="button" role="tab"
+                    aria-selected="true" aria-controls="panel-html">
+                    HTML
+                </button>
+
+                <button class="tabs__button" id="tab-css" type="button" role="tab" aria-selected="false"
+                    aria-controls="panel-css">
+                    CSS
+                </button>
+
+                <button class="tabs__button" id="tab-js" type="button" role="tab" aria-selected="false"
+                    aria-controls="panel-js">
+                    JavaScript
+                </button>
+            </div>
+
+            <section class="tabs__panel tabs__panel--active" id="panel-html" role="tabpanel" aria-labelledby="tab-html">
+                <h3 class="tabs__panel-title">HTML Panel</h3>
+                <p class="tabs__panel-text">
+                    Semantic HTML gives structure and meaning to a page.
+                </p>
+            </section>
+
+            <section class="tabs__panel" id="panel-css" role="tabpanel" aria-labelledby="tab-css" hidden>
+                <h3 class="tabs__panel-title">CSS Panel</h3>
+                <p class="tabs__panel-text">
+                    CSS controls presentation, layout, spacing, and visual states.
+                </p>
+            </section>
+
+            <section class="tabs__panel" id="panel-js" role="tabpanel" aria-labelledby="tab-js" hidden>
+                <h3 class="tabs__panel-title">JavaScript Panel</h3>
+                <p class="tabs__panel-text">
+                    JavaScript adds behavior, interactivity, and UI state changes.
+                </p>
+            </section>
+        </section>
+
+        <section class="accordion" aria-labelledby="accordion-heading">
+            <h2 class="accordion__heading" id="accordion-heading">Accordion Component</h2>
+
+            <section class="accordion__item">
+                <h3 class="accordion__title">
+                    <button class="accordion__trigger" id="accordion-trigger-1" type="button" aria-expanded="false"
+                        aria-controls="accordion-panel-1">
+                        What is semantic HTML?
+                    </button>
+                </h3>
+
+                <div class="accordion__panel" id="accordion-panel-1" role="region" aria-labelledby="accordion-trigger-1"
+                    hidden>
+                    <p class="accordion__text">
+                        Semantic HTML uses meaningful elements like main, section, article, nav, and button so browsers
+                        and assistive technologies can understand structure and purpose.
+                    </p>
+                </div>
+            </section>
+
+            <section class="accordion__item">
+                <h3 class="accordion__title">
+                    <button class="accordion__trigger" id="accordion-trigger-2" type="button" aria-expanded="false"
+                        aria-controls="accordion-panel-2">
+                        Why use buttons for interactive controls?
+                    </button>
+                </h3>
+
+                <div class="accordion__panel" id="accordion-panel-2" role="region" aria-labelledby="accordion-trigger-2"
+                    hidden>
+                    <p class="accordion__text">
+                        Buttons are keyboard accessible by default and clearly communicate interactivity to both
+                        browsers and assistive technologies.
+                    </p>
+                </div>
+            </section>
+
+            <section class="accordion__item">
+                <h3 class="accordion__title">
+                    <button class="accordion__trigger" id="accordion-trigger-3" type="button" aria-expanded="false"
+                        aria-controls="accordion-panel-3">
+                        What does JavaScript control here?
+                    </button>
+                </h3>
+
+                <div class="accordion__panel" id="accordion-panel-3" role="region" aria-labelledby="accordion-trigger-3"
+                    hidden>
+                    <p class="accordion__text">
+                        JavaScript updates classes and ARIA attributes so the interface stays visually clear and
+                        programmatically accurate.
+                    </p>
+                </div>
+            </section>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>
