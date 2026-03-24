@@ -158,14 +158,17 @@ body {
     border-color: border var(--border-color-active);
 }
 
+.accordion__icon svg {
+    width: 24px;
+    height: 24px;
+}
+
 .accordion__icon {
     display: inline-block;
     margin-left: 16px;
     transition: transform 0.3s ease;
     transform: rotate(0deg);
     pointer-events: none;
-    width: 24px;
-    height: auto;
 }
 
 .accordion__trigger--open .accordion__icon {
