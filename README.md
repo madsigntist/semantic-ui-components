@@ -31,6 +31,18 @@ Both components are keyboard-friendly, screen-reader accessible, and use real AR
 - **BEM naming** — block, element, and modifier class conventions throughout
 - **CSS transitions** — hover, focus, and active visual state changes
 - **Keyboard accessibility** — focus styles and native button interactivity
+- **Arrow-key tab navigation** — `ArrowRight` and `ArrowLeft` move focus between tabs, wrapping at each end; the focused tab is activated automatically
+
+## Keyboard Navigation
+
+The tabs component follows the [WAI-ARIA Tabs pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabs/) for keyboard interaction:
+
+| Key          | Behavior                                                      |
+| ------------ | ------------------------------------------------------------- |
+| `ArrowRight` | Move focus to the next tab and activate it (wraps around)     |
+| `ArrowLeft`  | Move focus to the previous tab and activate it (wraps around) |
+
+Focus and activation are handled together — pressing an arrow key both moves focus to the new tab button and displays its panel.
 
 ## Getting Started
 

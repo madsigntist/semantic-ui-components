@@ -35,6 +35,35 @@
         activateTab(button);
       });
     });
+
+    tabButtons.forEach(function (button, index) {
+      button.addEventListener("keydown", function (event) {
+        handleTabKeyNavigation(event, index);
+      });
+    });
+
+    function handleTabKeyNavigation(event, currentIndex) {
+      if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") {
+        return;
+      }
+
+      event.preventDefault();
+
+      let newIndex;
+
+      if (event.key === "ArrowRight") {
+        newIndex = (currentIndex + 1) % tabButtons.length;
+      } else if (event.key === "ArrowLeft") {
+        newIndex = (currentIndex - 1 + tabButtons.length) % tabButtons.length;
+      }
+
+      const nextButton = tabButtons[newIndex];
+
+      nextButton.focus();
+
+      resetTabs();
+      activateTab(nextButton);
+    }
   }
 
   window.addEventListener("DOMContentLoaded", tabComponent);
@@ -47,15 +76,85 @@
   function accordionComponent() {
     const accordionTriggers = document.querySelectorAll(".accordion__trigger");
 
-    accordionTriggers.forEach(function (trigger) {
-      trigger.addEventListener("click", function () {
-        const panelId = trigger.getAttribute("aria-controls");
-        const targetPanel = document.getElementById(panelId);
+    function closeAccordionItem(trigger) {
+      const panelId = trigger.getAttribute("aria-controls");
+      const targetPanel = document.getElementById(panelId);
+
+      trigger.setAttribute("aria-expanded", "false");
+      trigger.classList.remove("accordion__trigger--open");
+
+      targetPanel.style.height = `${targetPanel.scrollHeight}px`;
+
+      requestAnimationFrame(function () {
+        targetPanel.classList.remove("accordion__panel--open");
+        targetPanel.style.height = "0px";
+      });
+
+      targetPanel.addEventListener(
+        "transitionend",
+        function handleCloseTransition(event) {
+          if (event.propertyName !== "height") {
+            return;
+          }
+
+          targetPanel.hidden = true;
+          targetPanel.removeEventListener(
+            "transitionend",
+            handleCloseTransition,
+          );
+        },
+      );
+    }
+
+    function openAccordionItem(trigger) {
+      const panelId = trigger.getAttribute("aria-controls");
+      const targetPanel = document.getElementById(panelId);
+
+      trigger.setAttribute("aria-expanded", "true");
+      trigger.classList.add("accordion__trigger--open");
+
+      targetPanel.hidden = false;
+      targetPanel.classList.add("accordion__panel--open");
+
+      const panelHeight = targetPanel.scrollHeight;
+
+      targetPanel.style.height = `${panelHeight}px`;
+
+      targetPanel.addEventListener(
+        "transitionend",
+        function handleOpenTransition(event) {
+          if (event.propertyName !== "height") {
+            return;
+          }
+
+          targetPanel.style.height = "auto";
+          targetPanel.removeEventListener(
+            "transitionend",
+            handleOpenTransition,
+          );
+        },
+      );
+    }
+
+    function closeAllAccordionItems() {
+      accordionTriggers.forEach(function (trigger) {
         const isExpanded = trigger.getAttribute("aria-expanded") === "true";
 
-        trigger.setAttribute("aria-expanded", String(!isExpanded));
-        trigger.classList.toggle("accordion__trigger--open");
-        targetPanel.hidden = isExpanded;
+        if (isExpanded) {
+          closeAccordionItem(trigger);
+        }
+      });
+    }
+
+    accordionTriggers.forEach(function (trigger) {
+      trigger.addEventListener("click", function () {
+        const isExpanded = trigger.getAttribute("aria-expanded") === "true";
+
+        closeAllAccordionItems();
+
+        if (!isExpanded) {
+          openAccordionItem(trigger);
+        }
       });
     });
   }
